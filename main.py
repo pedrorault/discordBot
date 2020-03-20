@@ -18,7 +18,7 @@ async def on_ready():
 @client.command()
 async def poke(ctx):
     file = randomPoke()
-    await ctx.send(file=discord.file(file))
+    await ctx.send(file=discord.File(file))
 
 @client.command()
 async def waifu(ctx):       
