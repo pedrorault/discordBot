@@ -4,6 +4,7 @@ from discord.ext.commands import CommandNotFound
 import asyncio
 import os
 from waifuBot.waifuBot import getWaifuFromScrapping
+from pokeBot.pokeBot import randomPoke
 from spyBot.partidaSpy import Partida
 from spyBot.locaisEpapeis import getLocation,getNroles, getPrintableLocationList, getLocationList
 
@@ -13,6 +14,11 @@ dictPartidas = dict()
 @client.event
 async def on_ready():
     print("Bot is ready")
+
+@client.command()
+async def poke(ctx):
+    file = randomPoke()
+    await ctx.send(file=discord.file(file))
 
 @client.command()
 async def waifu(ctx):       
