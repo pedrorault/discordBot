@@ -4,7 +4,7 @@ from discord.ext.commands import CommandNotFound
 import asyncio
 import os
 from waifuBot.waifuBot import getWaifuFromScrapping
-from pokeBot.pokeBot import randomPoke
+from pokeBot.pokeBot import randomPoke, choosePoke
 from spyBot.partidaSpy import Partida
 from spyBot.locaisEpapeis import getLocation,getNroles, getPrintableLocationList, getLocationList
 
@@ -17,7 +17,11 @@ async def on_ready():
 
 @client.command()
 async def poke(ctx):
-    file = randomPoke()
+    v = ctx.message.content.split(" ")
+    if len(v) != 3:
+        file = randomPoke()
+    else:
+        file = choosePoke(v[1],v[2])
     await ctx.send(file=discord.File(file))
 
 @client.command()
