@@ -112,7 +112,7 @@ async def local(ctx):
 
 @client.command()
 async def clear(ctx):
-    commands = ['.spy','.start','.vote', '.local', '.stop','.clear','.helpspy','.waifu' ]
+    commands = ['.spy','.start','.vote', '.local', '.stop','.clear','.helpspy','.waifu','.poke' ]
     async for msg in ctx.channel.history(limit=50):
         if msg.author == client.user or msg.content.startswith(tuple(commands)):
             await discord.Message.delete(msg)
