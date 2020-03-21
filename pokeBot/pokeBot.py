@@ -2,8 +2,8 @@ import requests
 import random  
 
 def choosePoke(x,y):
-    if type(x) is int and type(y) is int:
-        if x in (1,152) and y in (1,152):
+    if type(x) is int and x in range(1,152):
+        if type(y) is int and y in range(1,152):
             return getPoke(x,y)
         else:
             return randomPoke()
