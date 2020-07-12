@@ -4,7 +4,7 @@ from discord.ext.commands import CommandNotFound
 import asyncio
 import os
 from waifuBot.waifuBot import getWaifuFromScrapping
-from pokeBot.pokeBot import randomPoke, choosePoke
+from pokeBot.pokeBot import randomPoke, choosePoke, pokemonLogo
 from spyBot.partidaSpy import Partida
 from spyBot.locaisEpapeis import getLocation,getNroles, getPrintableLocationList, getLocationList
 
