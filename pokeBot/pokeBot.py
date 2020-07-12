@@ -14,7 +14,7 @@ def randomPoke():
     return getPoke(x,y)
 
 def pokemonLogo():
-    url = 'https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg'
+    url = 'https://logodownload.org/wp-content/uploads/2017/08/pokemon-logo.png'
     r = requests.get(url,allow_redirects=True)
     logo = 'logo.png'
     open(logo,'wb').write(r.content)
