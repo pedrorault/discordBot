@@ -16,6 +16,11 @@ async def on_ready():
     print("Bot is ready")
 
 @client.command()
+async def pokemon(ctx):   
+    file = pokemonLogo()
+    await ctx.send(file=discord.File(file))
+    
+@client.command()
 async def poke(ctx):
     msg = (ctx.message.content.replace(".poke ","")).split(" ")
     if len(msg) == 2:
