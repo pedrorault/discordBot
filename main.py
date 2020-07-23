@@ -40,8 +40,10 @@ async def poke(ctx):
             file = randomPoke()
         else:
             cnt, file = whichPoke(msg[0])
-            if cnt != "":
+            if cnt != "" and file !="":
                 return await ctx.send(content=cnt, file=discord.File(file))
+            elif cnt != "":
+                return await ctx.send(content=cnt)
             else:
                 return 
     else:

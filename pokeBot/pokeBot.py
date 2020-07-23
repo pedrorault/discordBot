@@ -1,6 +1,8 @@
 import requests
 import random  
 import json
+from difflib import get_close_matches
+
 
 def choosePoke(x,y):
     if x in range(1,152):
@@ -55,9 +57,16 @@ def whichPoke(arg):
         filePath = f'./pokeBot/pokes/{poke["id"]}.png'
 
     elif arg.isalpha():
+        nomes = []
         for item in pokeList:
+            nomes.append(item['name'])
             if arg.lower() == item["name"].lower():
                 msg = f'{item["id"]}: {item["name"]}'
-                filePath = f'./pokeBot/pokes/{item["id"]}.png'   
+                filePath = f'./pokeBot/pokes/{item["id"]}.png'
+        if msg == "":
+            result = get_close_matches(arg,nomes)
+            if(len(result) >= 1):
+                closePokes = ', '.join(result)
+                msg = f'Você quis dizer: {closePokes}?'    
     
     return [msg,filePath]
