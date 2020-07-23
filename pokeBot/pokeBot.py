@@ -1,5 +1,6 @@
 import requests
 import random  
+import json
 
 def choosePoke(x,y):
     if x in range(1,152):
@@ -26,3 +27,37 @@ def getPoke(x,y):
     name = 'poke.png'
     open(name,'wb').write(r.content)
     return name
+
+def getPokeList():
+    tmpList = []
+    with open("./pokeBot/pokemon.txt","r",encoding="utf-8") as f:
+        lines = f.readlines()
+        for line in lines:
+            line = line.replace("\n","").split(" ")
+            pokeObj = {
+                "id": line[0],
+                "name": line[1]
+            }
+            tmpList.append(pokeObj)
+    return tmpList
+        
+
+def whichPoke(arg):
+    pokeList = getPokeList()
+    # The list is read already ordered, so to access a certain index it's simply Number-1
+
+    msg = ""
+    filePath = ""
+
+    if(arg.isdigit()) and int(arg) > 0 and int(arg) < 891:
+        poke = pokeList[int(arg)-1] 
+        msg = f'{poke["id"]}: {poke["name"]}'
+        filePath = f'./pokeBot/pokes/{poke["id"]}.png'
+
+    elif arg.isalpha():
+        for item in pokeList:
+            if arg.lower() == item["name"].lower():
+                msg = f'{item["id"]}: {item["name"]}'
+                filePath = f'./pokeBot/pokes/{item["id"]}.png'   
+    
+    return [msg,filePath]

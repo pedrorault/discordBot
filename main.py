@@ -4,16 +4,21 @@ from discord.ext.commands import CommandNotFound
 import asyncio
 import os
 from waifuBot.waifuBot import getWaifuFromScrapping
-from pokeBot.pokeBot import randomPoke, choosePoke, pokemonLogo
+from pokeBot.pokeBot import randomPoke, choosePoke, pokemonLogo,whichPoke
 from spyBot.partidaSpy import Partida
 from spyBot.locaisEpapeis import getLocation,getNroles, getPrintableLocationList, getLocationList
 
 
 client = commands.Bot(command_prefix = '.',description=".help para os comandos")
 dictPartidas = dict()
+
+def firstTimeScripts():
+    exec(open("./pokeBot/scripts/downloadPokemonImages.py").read())
+
 @client.event
 async def on_ready():
     print("Bot is ready")
+    firstTimeScripts()
 
 @client.command()
 async def pokemon(ctx):   
@@ -30,6 +35,15 @@ async def poke(ctx):
             file = choosePoke(x,y)
         except:
             file = randomPoke()
+    elif len(msg) == 1:
+        if msg[0] == ".poke":
+            file = randomPoke()
+        else:
+            cnt, file = whichPoke(msg[0])
+            if cnt != "":
+                return await ctx.send(content=cnt, file=discord.File(file))
+            else:
+                return 
     else:
         file = randomPoke()
     await ctx.send(file=discord.File(file))
@@ -61,7 +75,6 @@ async def start(ctx):
         async for user in msgObj.reactions[0].users():
             if user != client.user:
                 dictPartidas[channelId].incluirJogador(user)
-                #print(user)    
         if dictPartidas[channelId].prontoJogadoresInicio():
             await ctx.send("Enviando roles por mensagem privada.")
             lista = dictPartidas[channelId].distribuirRoles()
