@@ -3,7 +3,7 @@ from discord.ext import commands
 from discord.ext.commands import CommandNotFound
 import asyncio
 import os
-from waifuBot.waifuBot import getWaifuFromScrapping
+from waifuBot.waifuBot import getWaifuFromScrapping, getFurry
 from pokeBot.pokeBot import randomPoke, choosePoke, pokemonLogo,whichPoke
 from spyBot.partidaSpy import Partida
 from spyBot.locaisEpapeis import getLocation,getNroles, getPrintableLocationList, getLocationList
@@ -54,6 +54,11 @@ async def poke(ctx):
 async def waifu(ctx):       
     getWaifuFromScrapping()
     await ctx.send(file=discord.File('img.jpg'))
+
+@client.command()
+async def furry(ctx):       
+    getFurry()
+    await ctx.send(file=discord.File('fur.jpg'))
 
 @client.command()
 async def spy(ctx):   
