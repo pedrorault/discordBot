@@ -1,6 +1,5 @@
 import requests
 import random
-import waifuBot.sendImageFromWeb
 
 def getWaifu():
     i = random.randrange(1000,100000)
