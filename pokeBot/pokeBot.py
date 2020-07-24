@@ -2,6 +2,7 @@ import requests
 import random  
 import json
 from difflib import get_close_matches
+import os
 
 
 def choosePoke(x,y):
@@ -44,6 +45,8 @@ def getPokeList():
     return tmpList
 
 def pokedexImagem(idPoke):
+    if not os.path.isdir('./pokeBot/pokes'):
+        os.mkdir('./pokeBot/pokes')
     url = f'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{idPoke}.png'
     r = requests.get(url)
     open(f'./pokeBot/pokes/{idPoke}.png','wb').write(r.content)
@@ -59,6 +62,8 @@ def whichPoke(arg):
         poke = pokeList[int(arg)-1] 
         msg = f'{poke["id"]}: {poke["name"]}'
         filePath = f'./pokeBot/pokes/{poke["id"]}.png'
+        pokedexImagem(poke["id"])
+
 
     elif arg.isalpha():
         nomes = []
@@ -78,5 +83,5 @@ def whichPoke(arg):
                 closePokes = ', '.join(result)
                 msg2,filePath = whichPoke(result[0])
                 msg = f'Você quis dizer: {closePokes}?\n{msg2}'
-                
+
     return [msg,filePath]
