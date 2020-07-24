@@ -42,7 +42,11 @@ def getPokeList():
             }
             tmpList.append(pokeObj)
     return tmpList
-        
+
+def pokedexImagem(idPoke):
+    url = f'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{idPoke}.png'
+    r = requests.get(url)
+    open(f'./pokeBot/pokes/{idPoke}.png','wb').write(r.content)
 
 def whichPoke(arg):
     pokeList = getPokeList()
@@ -63,6 +67,7 @@ def whichPoke(arg):
             if arg.lower() == item["name"].lower():
                 msg = f'{item["id"]}: {item["name"]}'
                 filePath = f'./pokeBot/pokes/{item["id"]}.png'
+                pokedexImagem(item["id"])
 
         if msg == "":
             result = get_close_matches(arg,nomes)
@@ -73,5 +78,5 @@ def whichPoke(arg):
                 closePokes = ', '.join(result)
                 msg2,filePath = whichPoke(result[0])
                 msg = f'Você quis dizer: {closePokes}?\n{msg2}'
-    
+                
     return [msg,filePath]

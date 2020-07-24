@@ -9,14 +9,9 @@ from spyBot.spyCog import SpyCog
 
 bot = commands.Bot(command_prefix = '.',description=".help para os comandos")
 
-def firstTimeScripts():
-    exec(open("./pokeBot/scripts/downloadPokemonImages.py").read())
-    print("Done")
-
 @bot.event
 async def on_ready():
     print("Bot is ready")
-    firstTimeScripts()
 
 @bot.command()
 async def clear(ctx):
