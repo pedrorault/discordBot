@@ -63,10 +63,15 @@ def whichPoke(arg):
             if arg.lower() == item["name"].lower():
                 msg = f'{item["id"]}: {item["name"]}'
                 filePath = f'./pokeBot/pokes/{item["id"]}.png'
+
         if msg == "":
             result = get_close_matches(arg,nomes)
-            if(len(result) >= 1):
+            if len(result) > 1:                
                 closePokes = ', '.join(result)
-                msg = f'Você quis dizer: {closePokes}?'    
+                msg = f'Você quis dizer: {closePokes}?' 
+            elif len(result) == 1:
+                closePokes = ', '.join(result)
+                msg2,filePath = whichPoke(result[0])
+                msg = f'Você quis dizer: {closePokes}?\n{msg2}'
     
     return [msg,filePath]
