@@ -1,16 +1,17 @@
 import discord
 from discord.ext import commands
 from pokeBot.pokeBot import *
+from pokeBot.pokeEmbed import PokeInfo
 
 class PokeCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command()
-    async def pokemon(self,ctx):   
+    async def pokemon(self,ctx):
         file = pokemonLogo()
         await ctx.send(file=discord.File(file))
-        
+
     @commands.command()
     async def poke(self,ctx):
         msg = (ctx.message.content.replace(".poke ","")).split(" ")
@@ -27,11 +28,12 @@ class PokeCog(commands.Cog):
             else:
                 cnt, file = whichPoke(msg[0])
                 if cnt != "" and file !="":
-                    return await ctx.send(content=cnt, file=discord.File(file))
+                    p = PokeInfo(namePokemon=cnt)
+                    return await ctx.send(embed=p.embedVar)
                 elif cnt != "":
                     return await ctx.send(content=cnt)
                 else:
-                    return 
+                    return
         else:
             file = randomPoke()
         await ctx.send(file=discord.File(file))

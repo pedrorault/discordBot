@@ -1,8 +1,9 @@
 import requests
-import random  
+import random
 import json
 from difflib import get_close_matches
 import os
+import pokebase as pb
 
 
 def choosePoke(x,y):
@@ -23,7 +24,7 @@ def pokemonLogo():
     logo = 'logo.png'
     open(logo,'wb').write(r.content)
     return logo
-    
+
 def getPoke(x,y):
     url = 'https://images.alexonsager.net/pokemon/fused/{0}/{0}.{1}.png'.format(x,y)
     r = requests.get(url,allow_redirects=True)
@@ -59,26 +60,27 @@ def whichPoke(arg):
     filePath = ""
 
     if(arg.isdigit()) and int(arg) > 0 and int(arg) < 891:
-        poke = pokeList[int(arg)-1] 
-        msg = f'{poke["id"]}: {poke["name"]}'
+        poke = pokeList[int(arg)-1]
+        # msg = f'{poke["id"]}: {poke["name"]}'
+        msg = poke["name"].lower()
         filePath = f'./pokeBot/pokes/{poke["id"]}.png'
         pokedexImagem(poke["id"])
-
 
     elif arg.isalpha():
         nomes = []
         for item in pokeList:
             nomes.append(item['name'])
             if arg.lower() == item["name"].lower():
-                msg = f'{item["id"]}: {item["name"]}'
+                # msg = f'{item["id"]}: {item["name"]}'
+                msg = item["name"].lower()
                 filePath = f'./pokeBot/pokes/{item["id"]}.png'
                 pokedexImagem(item["id"])
 
         if msg == "":
             result = get_close_matches(arg,nomes)
-            if len(result) > 1:                
+            if len(result) > 1:
                 closePokes = ', '.join(result)
-                msg = f'Você quis dizer: {closePokes}?' 
+                msg = f'Você quis dizer: {closePokes}?'
             elif len(result) == 1:
                 closePokes = ', '.join(result)
                 msg2,filePath = whichPoke(result[0])

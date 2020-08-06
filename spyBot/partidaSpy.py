@@ -2,7 +2,7 @@ import sys
 sys.path.insert(0,'..')
 from spyBot.locaisEpapeis import getLocation, getNroles
 from random import choice
-import discord 
+import discord
 
 class Partida:
     players = []
@@ -14,7 +14,7 @@ class Partida:
     def __init__(self, channel : int, idJoin):
         self.channelResposta = channel
         self.idJoin = idJoin
-        
+
     def incluirJogador(self,member):
         #TODO: tirar return, pq sim
         if len(self.players) <= 8 and member not in self.players:
@@ -22,7 +22,7 @@ class Partida:
             return True
         else:
             return False
-    
+
     def prontoJogadoresInicio(self):
         nPlayers = len(self.players)
         if nPlayers >= 3 and nPlayers <= 8:

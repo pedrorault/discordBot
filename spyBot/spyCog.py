@@ -10,12 +10,12 @@ class SpyCog(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def spy(self,ctx):   
+    async def spy(self,ctx):
         channelId = ctx.message.channel.id
         if channelId not in dictPartidas.keys():
             msg = await ctx.send("Clique na reação para entrar na partida.\nQuando todos estiverem prontos, digite .start\nMínimo: 3 jogadores\t Máx: 8 jogadores")
             emoji = '\U0001F44C'
-            await msg.add_reaction(emoji)      
+            await msg.add_reaction(emoji)
             await asyncio.sleep(3)
             msg2 = await ctx.fetch_message(msg.id) #permanent on server
             dictPartidas[channelId] = Partida(channelId,msg2)
@@ -60,7 +60,7 @@ class SpyCog(commands.Cog):
             del obj
             await ctx.send("Partida anterior do canal encerrada.")
         else:
-            await ctx.send("Não há partida ativa no canal.")  
+            await ctx.send("Não há partida ativa no canal.")
 
     @commands.command()
     async def vote(self,ctx):
@@ -77,9 +77,9 @@ class SpyCog(commands.Cog):
     @commands.command()
     async def local(self,ctx):
         channelId = ctx.message.channel.id
-        if channelId in dictPartidas.keys():    
+        if channelId in dictPartidas.keys():
             if ctx.message.author == dictPartidas[channelId].spyPlayer:
-                resp = ctx.message.content.split(".local ")            
+                resp = ctx.message.content.split(".local ")
                 if resp[1] in getLocationList():
                     if resp[1] != '' and resp[1] == dictPartidas[channelId].locationRound:
                         await ctx.send("O espião acertou o local.")

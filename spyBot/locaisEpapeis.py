@@ -79,7 +79,7 @@ def getPrintableLocationList():
     return pretty
 
 def getLocation():
-    return random.choice(getLocationList()) 
+    return random.choice(getLocationList())
 
 def choiceAndPop(lista):
     if len(lista) == 8: #max 8 roles and spy being the last
@@ -100,14 +100,14 @@ def getNroles(numplayers: int, location: str):
         print("Número de jogadores não permitido. (Min:3) (Máx: 8)")
     else:
         #location = getLocation()
-        lista = getLista()[location]   
-        #print(f'{location}:{lista}') 
-        roles = []      
-        while nPlayers > 0:            
+        lista = getLista()[location]
+        #print(f'{location}:{lista}')
+        roles = []
+        while nPlayers > 0:
             roles.append(choiceAndPop(lista))
             nPlayers-=1
         return roles
 
 
 
-        
+
