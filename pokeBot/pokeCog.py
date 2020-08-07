@@ -29,7 +29,7 @@ class PokeCog(commands.Cog):
                 cnt, file = whichPoke(msg[0])
                 if cnt != "" and file !="":
                     p = PokeInfo(namePokemon=cnt)
-                    return await ctx.send(embed=p.embedVar)
+                    return await ctx.send(embed=p)
                 elif cnt != "":
                     return await ctx.send(content=cnt)
                 else:

@@ -17,25 +17,6 @@ async def on_ready():
     await bot.change_presence(activity=activity)
 
 @bot.command()
-async def teste(ctx):
-    name = "Graveler"
-    number = "075"
-    serebii = "https://www.serebii.net/pokedex-sm/075.shtml"
-    icon = "https://www.serebii.net/pokedex-sm/icon/075.png"
-
-    embedVar = discord.Embed(color=0x00ffff,type="rich") 
-    embedVar.set_author(name=name, url=serebii, icon_url=icon)   
-    embedVar.set_image(
-        url="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/075.png"
-    )
-    embedVar.add_field(name="Número", value=f'#{number}', inline=True)
-    embedVar.add_field(name="Tipo", value="Rock \t Ground", inline=False)
-    embedVar.add_field(name="Evolui de", value="Geodude",inline=True)
-    embedVar.add_field(name="Evolui para", value="Golem",inline=True)
-
-    await ctx.send(embed=embedVar)
-
-@bot.command()
 async def clear(ctx):
     commands = ['.spy','.start','.vote', '.local', '.stop','.clear','.helpspy','.waifu','.poke','.furry','.person' ]
     commands.append('.teste')

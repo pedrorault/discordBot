@@ -1,36 +1,45 @@
 import pokepy
 import collections
-from anytree import Node, RenderTree
+from anytree import Node
 
 #TODO: Implement own Tree
-client = pokepy.V2Client()
 class Pokemon():
     def __init__(self, namePokemon: str):
-        self.name = namePokemon.capitalize()
-        self.number = requestNumber(namePokemon)
-        self.types = map(lambda x : x.capitalize(),requestTypes(namePokemon))
-        self.evolvesFrom = requestEvolvesFrom(namePokemon).capitalize()
+        client = pokepy.V2Client()
 
-        evolutions = findEvolutions(root=getEvolutionTree(namePokemon),name=namePokemon)
-        if evolutions:
-            self.evolvesTo = map(lambda x: x.capitalize(), evolutions)
-        else:
-            self.evolvesTo = "-"
+        self.__pokeApi = client.get_pokemon(namePokemon)
+        self.__speciesApi = client.get_pokemon_species(namePokemon)
+        self.name = namePokemon.capitalize()
+
+        self.number = int(self.__pokeApi.id)
+
+        idChain = self.__speciesApi.evolution_chain.url.split("/")[-2]
+        self.__chainApi = client.get_evolution_chain(idChain).chain
+        
+        self.infoPage = f'https://www.serebii.net/pokedex-sm/{self.number:03}.shtml'
+        self.iconUrl = f'https://www.serebii.net/pokedex-sm/icon/{self.number:03}.png'
+        self.imageUrl = f'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{self.number:03}.png'
+        
+        self.types = list(map(lambda a: ( (a.type.name).capitalize() ), self.__pokeApi.types))
+        self.evolvesFrom = self.__speciesApi.evolves_from_species.name.capitalize() if self.__speciesApi.evolves_from_species else "-"
+
+        root = getEvolutionTree(self.__chainApi)
+        evolutions = findEvolutions(root=root,name=namePokemon)
+        self.evolvesTo = evolutions if evolutions else "-"
 
     def __repr__(self):
         return f'Pokemon({self.name!r})'
 
-def requestNumber(name: str):
-    stats = client.get_pokemon(name)
-    number = stats.id
-    return int(number)
+    def formatedInfo(self):
+        infos = {
+            "Número": '#{:03}'.format(self.number),
+            "Tipo": ' '.join(self.types),
+            "Evolui De" : self.evolvesFrom,
+            "Evolui Para" : ', '.join(self.evolvesTo)
+        }
+        return infos
 
-def getEvolutionTree(name: str):
-    # client = pokepy.V2Client() #TODO: Remove this V2Client() call
-    species = client.get_pokemon_species(name)
-    idChain = species.evolution_chain.url.split("/")[-2]
-
-    chain = client.get_evolution_chain(idChain).chain
+def getEvolutionTree(chain):
     root = Node(chain.species.name)
     for evo1 in chain.evolves_to:
         firstEvo = Node(evo1.species.name,parent=root)
@@ -42,21 +51,9 @@ def findEvolutions(root, name):
     if not root:
         return None 
     if root.name == name:
-        return list(map(lambda x : x.name,root.children))
+        return list(map(lambda x : x.name.capitalize(),root.children))
     else:
         for i in root.children:
             result = findEvolutions(i,name)
             if result:
                 return result
-
-def requestTypes(name: str):
-    # client = pokepy.V2Client()
-    stats = client.get_pokemon(name)
-    types = list(map(lambda a: ((a.type.name)),stats.types)) 
-    return types
-
-def requestEvolvesFrom(name: str):
-    # client = pokepy.V2Client()
-    species = client.get_pokemon_species(name)
-    evolvesFrom = species.evolves_from_species.name if species.evolves_from_species else "-"
-    return evolvesFrom
