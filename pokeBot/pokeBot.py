@@ -3,8 +3,6 @@ import random
 import json
 from difflib import get_close_matches
 import os
-import pokebase as pb
-
 
 def choosePoke(x,y):
     if x in range(1,152):

@@ -1,5 +1,4 @@
 import pokepy
-# import pokeObj
 import collections
 from anytree import Node, RenderTree
 
@@ -17,7 +16,6 @@ class Pokemon():
             self.evolvesTo = map(lambda x: x.capitalize(), evolutions)
         else:
             self.evolvesTo = "-"
-
 
     def __repr__(self):
         return f'Pokemon({self.name!r})'
