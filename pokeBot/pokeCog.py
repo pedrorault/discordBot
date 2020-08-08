@@ -26,10 +26,10 @@ class PokeCog(commands.Cog):
             if msg[0] == ".poke":
                 file = randomPoke()
             else:
-                cnt, file = whichPoke(msg[0])
-                if cnt != "" and file !="":
-                    p = PokeInfo(namePokemon=cnt)
-                    return await ctx.send(embed=p)
+                cnt, found = whichPoke(msg[0])
+                if found:
+                    p = PokeInfo(idPokemon=cnt)
+                    return await ctx.send(embed=p)               
                 elif cnt != "":
                     return await ctx.send(content=cnt)
                 else:

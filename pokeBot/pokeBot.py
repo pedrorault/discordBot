@@ -43,45 +43,31 @@ def getPokeList():
             tmpList.append(pokeObj)
     return tmpList
 
-def pokedexImagem(idPoke):
-    if not os.path.isdir('./pokeBot/pokes'):
-        os.mkdir('./pokeBot/pokes')
-    url = f'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{idPoke}.png'
-    r = requests.get(url)
-    open(f'./pokeBot/pokes/{idPoke}.png','wb').write(r.content)
-
 def whichPoke(arg):
     pokeList = getPokeList()
     # The list is read already ordered, so to access a certain index it's simply Number-1
 
-    msg = ""
-    filePath = ""
+    pokeId = None
+    foundPoke = True
 
     if(arg.isdigit()) and int(arg) > 0 and int(arg) < 891:
         poke = pokeList[int(arg)-1]
-        # msg = f'{poke["id"]}: {poke["name"]}'
-        msg = poke["name"].lower()
-        filePath = f'./pokeBot/pokes/{poke["id"]}.png'
-        pokedexImagem(poke["id"])
+        pokeId = int(poke["id"])
 
-    elif arg.isalpha():
+    else:
         nomes = []
         for item in pokeList:
             nomes.append(item['name'])
             if arg.lower() == item["name"].lower():
-                # msg = f'{item["id"]}: {item["name"]}'
-                msg = item["name"].lower()
-                filePath = f'./pokeBot/pokes/{item["id"]}.png'
-                pokedexImagem(item["id"])
+                pokeId = int(item["id"])
 
-        if msg == "":
+        if not pokeId:
             result = get_close_matches(arg,nomes)
             if len(result) > 1:
-                closePokes = ', '.join(result)
-                msg = f'Você quis dizer: {closePokes}?'
+                closestMatches = ', '.join(result)
+                pokeName = f'Você quis dizer: {closestMatches}?'
+                foundPoke = False
             elif len(result) == 1:
-                closePokes = ', '.join(result)
-                msg2,filePath = whichPoke(result[0])
-                msg = f'Você quis dizer: {closePokes}?\n{msg2}'
-
-    return [msg,filePath]
+                pokeId = whichPoke(result[0])[0]
+    
+    return [pokeId,foundPoke] if foundPoke else [pokeName, foundPoke]

@@ -26,10 +26,10 @@
 026 Raichu
 027 Sandshrew
 028 Sandslash
-029 Nidoran♀
+029 Nidoran-f
 030 Nidorina
 031 Nidoqueen
-032 Nidoran♂
+032 Nidoran-m
 033 Nidorino
 034 Nidoking
 035 Clefairy

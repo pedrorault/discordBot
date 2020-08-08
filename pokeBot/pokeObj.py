@@ -4,11 +4,12 @@ from anytree import Node
 
 #TODO: Implement own Tree
 class Pokemon():
-    def __init__(self, namePokemon: str):
+    def __init__(self, idPokemon: str):
         client = pokepy.V2Client()
-
-        self.__pokeApi = client.get_pokemon(namePokemon)
-        self.__speciesApi = client.get_pokemon_species(namePokemon)
+        
+        self.__pokeApi = client.get_pokemon(idPokemon)
+        self.__speciesApi = client.get_pokemon_species(idPokemon)
+        namePokemon = self.__speciesApi.name
         self.name = namePokemon.capitalize()
 
         self.number = int(self.__pokeApi.id)
@@ -26,7 +27,7 @@ class Pokemon():
         root = getEvolutionTree(self.__chainApi)
         evolutions = findEvolutions(root=root,name=namePokemon)
         self.evolvesTo = evolutions if evolutions else "-"
-
+        
     def __repr__(self):
         return f'Pokemon({self.name!r})'
 

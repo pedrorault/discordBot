@@ -8,7 +8,6 @@ from pokeBot.pokeCog import PokeCog
 from spyBot.spyCog import SpyCog
 
 bot = commands.Bot(command_prefix = '.')
-
 @bot.event
 async def on_ready():
     print("Bot is ready")
@@ -19,7 +18,6 @@ async def on_ready():
 @bot.command()
 async def clear(ctx):
     commands = ['.spy','.start','.vote', '.local', '.stop','.clear','.helpspy','.waifu','.poke','.furry','.person' ]
-    commands.append('.teste')
     async for msg in ctx.channel.history(limit=20):
         if msg.author == bot.user or msg.content.startswith(tuple(commands)):
             await discord.Message.delete(msg)
