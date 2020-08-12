@@ -29,7 +29,7 @@ class SpyCog(commands.Cog):
             msgid = dictPartidas[channelId].idJoin.id
             msgObj = await ctx.fetch_message(msgid) #Recriar objeto Message pra ter as novas reações
             async for user in msgObj.reactions[0].users():
-                if user != bot.user:
+                if user != self.bot.user:
                     dictPartidas[channelId].incluirJogador(user)
             if dictPartidas[channelId].prontoJogadoresInicio():
                 await ctx.send("Enviando roles por mensagem privada.")
