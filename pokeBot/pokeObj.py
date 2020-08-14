@@ -46,7 +46,6 @@ def getEvolutionTree(chain):
         firstEvo = Node(evo1.species.name,parent=root)
         for evo2 in evo1.evolves_to:
             Node(evo2.species.name,parent=firstEvo)
-    print(RenderTree(root))
     return root
 
 def findEvolutions(root, name):
