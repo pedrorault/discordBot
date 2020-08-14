@@ -1,7 +1,7 @@
 env
 .vscode
 __pycache__/
-img.jpg
 pokes/
 *.png
 *.jpg
+*.txt

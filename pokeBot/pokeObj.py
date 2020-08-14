@@ -1,6 +1,6 @@
 import pokepy
 import collections
-from anytree import Node
+from anytree import Node,RenderTree
 
 #TODO: Implement own Tree
 class Pokemon():
@@ -46,6 +46,7 @@ def getEvolutionTree(chain):
         firstEvo = Node(evo1.species.name,parent=root)
         for evo2 in evo1.evolves_to:
             Node(evo2.species.name,parent=firstEvo)
+    print(RenderTree(root))
     return root
 
 def findEvolutions(root, name):

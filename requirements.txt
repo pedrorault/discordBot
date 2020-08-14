@@ -3,3 +3,4 @@ discord
 asyncio
 pokepy
 anytree
+pytz
