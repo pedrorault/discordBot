@@ -18,7 +18,7 @@ class VoiceCog(commands.Cog):
 
     @tasks.loop(hours=24.0)
     async def horario(self):
-        idCanal = os.environ.get('idInvade')
+        idCanal = int(os.environ.get('idInvade'))
 
         som = discord.FFmpegPCMAudio("./voiceBot/mp3/Horario2.mp3")
         canal = self.bot.get_channel(idCanal)
@@ -42,3 +42,18 @@ class VoiceCog(commands.Cog):
         while not counter >= secondsLeft:
             await asyncio.sleep(1)
             counter +=1
+
+    @commands.command()
+    async def remix(self):
+        idCanal = int(os.environ.get('idInvade'))
+        som = discord.FFmpegPCMAudio("./voiceBot/mp3/Horario2.mp3")
+        canal = self.bot.get_channel(idCanal)
+        voice = await canal.connect()
+        voice.play(som)
+
+        counter = 0
+        duration = 8
+        while not counter >= duration:
+            await asyncio.sleep(1)
+            counter = counter + 1
+        await voice.disconnect()
