@@ -18,9 +18,6 @@ async def on_ready():
     activity = discord.Activity(name='Digimon', type=discord.ActivityType.watching)
     await bot.change_presence(activity=activity)
 
-
-
-
 @bot.command()
 async def clear(ctx):
     commands = ['.spy','.start','.vote', '.local', '.stop','.clear','.helpspy','.waifu','.poke','.furry','.person' ]
@@ -38,7 +35,6 @@ bot.add_cog(WaifuCog(bot))
 bot.add_cog(PokeCog(bot))
 bot.add_cog(SpyCog(bot))
 bot.add_cog(VoiceCog(bot))
-
 
 token = os.environ.get('TOKEN')
 bot.run(token)

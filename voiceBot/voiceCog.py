@@ -44,7 +44,7 @@ class VoiceCog(commands.Cog):
             counter +=1
 
     @commands.command()
-    async def remix(self):
+    async def remix(self,ctx):
         idCanal = int(os.environ.get('idInvade'))
         som = discord.FFmpegPCMAudio("./voiceBot/mp3/Horario2.mp3")
         canal = self.bot.get_channel(idCanal)
