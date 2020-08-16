@@ -46,6 +46,8 @@ class VoiceCog(commands.Cog):
     @commands.command()
     async def remix(self,ctx):
         idCanal = int(os.environ.get('idInvade'))
+        if not discord.opus.is_loaded():
+            discord.opus.load_opus('libopus.so')
         som = discord.FFmpegPCMAudio("./voiceBot/mp3/Horario2.mp3")
         canal = self.bot.get_channel(idCanal)
         voice = await canal.connect()
