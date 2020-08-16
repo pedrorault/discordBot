@@ -4,3 +4,4 @@ asyncio
 pokepy
 anytree
 pytz
+pynacl
