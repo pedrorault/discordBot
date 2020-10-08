@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands, tasks
 from discord.ext.commands import CommandNotFound
 import os
+import sys
 import asyncio
 import pytz
 
@@ -9,9 +10,14 @@ from waifuBot.waifuCog import WaifuCog
 from pokeBot.pokeCog import PokeCog
 from spyBot.spyCog import SpyCog
 from voiceBot.voiceCog import VoiceCog
-from ballBot.BallCog import BallCog
+from ballBot.ballCog import BallCog
 
 bot = commands.Bot(command_prefix = '.')
+
+if(sys.argv[1] == "debug"):
+    from dotenv import load_dotenv
+    load_dotenv()
+
 @bot.event
 async def on_ready():
     print("Bot is ready")

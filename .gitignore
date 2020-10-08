@@ -5,3 +5,4 @@ pokes/
 *.png
 *.jpg
 *.txt
+.env
