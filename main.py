@@ -9,6 +9,7 @@ from waifuBot.waifuCog import WaifuCog
 from pokeBot.pokeCog import PokeCog
 from spyBot.spyCog import SpyCog
 from voiceBot.voiceCog import VoiceCog
+from ballBot.BallCog import BallCog
 
 bot = commands.Bot(command_prefix = '.')
 @bot.event
@@ -35,6 +36,8 @@ bot.add_cog(WaifuCog(bot))
 bot.add_cog(PokeCog(bot))
 bot.add_cog(SpyCog(bot))
 bot.add_cog(VoiceCog(bot))
+bot.add_cog(BallCog(bot))
+
 
 token = os.environ.get('TOKEN')
 bot.run(token)
