@@ -14,7 +14,7 @@ from ballBot.ballCog import BallCog
 
 bot = commands.Bot(command_prefix = '.')
 
-if(sys.argv[1] == "debug"):
+if(len(sys.argv) > 1 and sys.argv[1] == "debug"):
     from dotenv import load_dotenv
     load_dotenv()
 
