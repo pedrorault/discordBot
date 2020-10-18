@@ -44,6 +44,22 @@ class VoiceCog(commands.Cog):
             counter +=1
 
     @commands.command()
+    async def ovo(self,ctx):
+        idCanal = int(os.environ.get('idInvade')) 
+        if not discord.opus.is_loaded():
+            discord.opus.load_opus('libopus.so')
+        som = discord.FFmpegPCMAudio("./voiceBot/mp3/carrodoovo.mp3")
+        canal = self.bot.get_channel(idCanal)
+        voice = await canal.connect()
+        voice.play(som)
+        counter = 0
+        duration = 15
+        while not counter >= duration:
+            await asyncio.sleep(1)
+            counter = counter + 1
+        await voice.disconnect()
+
+    @commands.command()
     async def remix(self,ctx):
         idCanal = int(os.environ.get('idSoloQ'))
         if not discord.opus.is_loaded():
