@@ -45,7 +45,7 @@ class VoiceCog(commands.Cog):
 
     @commands.command()
     async def ovo(self,ctx):
-        idCanal = ctx.message.author.voice.voice_channel
+        idCanal = ctx.message.author.voice.channel
         if not discord.opus.is_loaded():
             discord.opus.load_opus('libopus.so')
         som = discord.FFmpegPCMAudio("./voiceBot/mp3/carrodoovo.mp3")
