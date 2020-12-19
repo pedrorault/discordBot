@@ -49,7 +49,6 @@ class VoiceCog(commands.Cog):
         if not discord.opus.is_loaded():
             discord.opus.load_opus('libopus.so')
         som = discord.FFmpegPCMAudio("./voiceBot/mp3/carrodoovo.mp3")
-        # canal = self.bot.get_channel(idCanal)
         voice = await idCanal.connect()
         voice.play(som)
         counter = 0
