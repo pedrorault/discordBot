@@ -27,10 +27,12 @@ async def on_ready():
 
 @bot.command()
 async def clear(ctx):
-    commands = ['.spy','.start','.vote', '.local', '.stop','.clear','.helpspy','.waifu','.poke','.furry','.person' ]
+    commands = ['.spy','.start','.vote', '.local', '.stop','.clear','.helpspy','.waifu','.poke','.furry','.person','.meeting','.ovo','.remix']
+    deletar = []
     async for msg in ctx.channel.history(limit=100):
         if msg.author == bot.user or msg.content.startswith(tuple(commands)):
-            await discord.Message.delete(msg)
+            deletar.append(msg)
+    await ctx.message.channel.delete_messages(deletar)
 
 @bot.event
 async def on_command_error(ctx, error):
