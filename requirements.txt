@@ -1,8 +1,8 @@
-requests
-discord 
-asyncio
 pokepy
+asyncio
 anytree
 pytz
 pynacl
-aiohttp
+discord
+requests ==2.21.*
+aiohttp==3.6.0
