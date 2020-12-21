@@ -11,6 +11,7 @@ from pokeBot.pokeCog import PokeCog
 from spyBot.spyCog import SpyCog
 from voiceBot.voiceCog import VoiceCog
 from ballBot.ballCog import BallCog
+from wikiuBot.wikiuCog import WikiuCog
 
 bot = commands.Bot(command_prefix = '.')
 
@@ -45,6 +46,7 @@ bot.add_cog(PokeCog(bot))
 bot.add_cog(SpyCog(bot))
 bot.add_cog(VoiceCog(bot))
 bot.add_cog(BallCog(bot))
+bot.add_cog(WikiuCog(bot))
 
 
 token = os.environ.get('TOKEN')
