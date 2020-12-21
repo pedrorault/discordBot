@@ -7,15 +7,15 @@ class Pokemon():
     def __init__(self, idPokemon: str):
         client = pokepy.V2Client()
         
-        self.__pokeApi = client.get_pokemon(idPokemon)
-        self.__speciesApi = client.get_pokemon_species(idPokemon)
+        self.__pokeApi = client.get_pokemon(idPokemon)[0]
+        self.__speciesApi = client.get_pokemon_species(idPokemon)[0]
         namePokemon = self.__speciesApi.name
         self.name = namePokemon.capitalize()
 
         self.number = int(self.__pokeApi.id)
 
         idChain = self.__speciesApi.evolution_chain.url.split("/")[-2]
-        self.__chainApi = client.get_evolution_chain(idChain).chain
+        self.__chainApi = client.get_evolution_chain(idChain)[0].chain
         
         self.infoPage = f'https://www.serebii.net/pokedex-sm/{self.number:03}.shtml'
         self.iconUrl = f'https://www.serebii.net/pokedex-sm/icon/{self.number:03}.png'
@@ -58,3 +58,6 @@ def findEvolutions(root, name):
             result = findEvolutions(i,name)
             if result:
                 return result
+
+if __name__ == "__main__":
+    a = Pokemon("1")
