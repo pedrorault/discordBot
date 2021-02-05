@@ -3,8 +3,6 @@ from discord.ext import commands, tasks
 from discord.ext.commands import CommandNotFound
 import os
 import sys
-import asyncio
-import pytz
 
 from waifuBot.waifuCog import WaifuCog
 from pokeBot.pokeCog import PokeCog
