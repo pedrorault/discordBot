@@ -1,3 +1,6 @@
+from datetime import datetime as dt
+import datetime
+from logging import exception
 import discord
 from discord.ext import commands, tasks
 from discord.ext.commands import CommandNotFound
@@ -10,6 +13,7 @@ from spyBot.spyCog import SpyCog
 from voiceBot.voiceCog import VoiceCog
 from ballBot.ballCog import BallCog
 from wikiuBot.wikiuCog import WikiuCog
+from dayBot.dayCog import DayCog
 
 bot = commands.Bot(command_prefix = '.')
 
@@ -27,10 +31,13 @@ async def on_ready():
 @bot.command()
 async def clear(ctx):
     commands = ['.spy','.start','.vote', '.local', '.stop','.clear','.helpspy','.waifu','.poke','.furry','.person','.meeting','.ovo','.remix']
+    commands += ['.see','.set','.reset','.remove']
     deletar = []
     async for msg in ctx.channel.history(limit=100):
         if msg.author == bot.user or msg.content.startswith(tuple(commands)):
-            deletar.append(msg)
+            diasPassados = dt.now().date() - msg.created_at.date()
+            if diasPassados.days  < 14:
+                deletar.append(msg)
     await ctx.message.channel.delete_messages(deletar)
 
 @bot.event
@@ -45,6 +52,7 @@ bot.add_cog(SpyCog(bot))
 bot.add_cog(VoiceCog(bot))
 bot.add_cog(BallCog(bot))
 bot.add_cog(WikiuCog(bot))
+bot.add_cog(DayCog(bot))
 
 
 token = os.environ.get('TOKEN')

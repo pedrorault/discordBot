@@ -6,3 +6,4 @@ pynacl
 discord
 requests ==2.21.*
 aiohttp==3.6.0
+datetime
