@@ -1,5 +1,4 @@
 from datetime import datetime as dt
-import datetime
 from logging import exception
 import discord
 from discord.ext import commands, tasks
@@ -7,7 +6,7 @@ from discord.ext.commands import CommandNotFound
 import os
 import sys
 
-from waifuBot.waifuCog import WaifuCog
+from imageBot.imageCog import ImageCog
 from pokeBot.pokeCog import PokeCog
 from spyBot.spyCog import SpyCog
 from voiceBot.voiceCog import VoiceCog
@@ -46,7 +45,7 @@ async def on_command_error(ctx, error):
         return
     raise error
 
-bot.add_cog(WaifuCog(bot))
+bot.add_cog(ImageCog(bot))
 bot.add_cog(PokeCog(bot))
 bot.add_cog(SpyCog(bot))
 bot.add_cog(VoiceCog(bot))

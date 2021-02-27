@@ -7,3 +7,5 @@ discord
 requests ==2.21.*
 aiohttp==3.6.0
 datetime
+urllib3~=1.25.4
+boto3
