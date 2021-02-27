@@ -2,10 +2,6 @@
 My personal discord bot, using [discord.py](https://github.com/Rapptz/discord.py) and [pokepy](https://github.com/PokeAPI/pokepy)
 ### Features
 1. **SpyBot**: Creates a Spyfall game to be played in discord. Send messages to Channels, DMs and read reactions.
-2. **WaifuBot**: 
-    - .waifu: Get and sends a random waifu; 
-    - .furry: Get and sends a random furry; 
-    - .person: Get and sends a random person image.
 3. **PokeBot**: 
     - .poke: Get and sends a random pokemon fusion image as a file.
     - .poke intA intB: Get and sends the specified poke fusion.
