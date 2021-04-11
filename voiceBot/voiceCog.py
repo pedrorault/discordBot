@@ -25,7 +25,8 @@ class VoiceCog(commands.Cog):
     @tasks.loop(hours=24.0)
     async def horario(self):
         idCanal = int(os.environ.get('idInvade'))
-        som = discord.FFmpegPCMAudio("./voiceBot/mp3/Horario2.mp3")
+        mus = os.environ.get("HORARIO")
+        som = discord.FFmpegPCMAudio(f"./voiceBot/mp3/{mus}.mp3")
         canal = self.bot.get_channel(idCanal)
         voice = await canal.connect()
         voice.play(som)
