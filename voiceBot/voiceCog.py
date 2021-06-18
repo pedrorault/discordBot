@@ -32,7 +32,7 @@ class VoiceCog(commands.Cog):
         voice.play(som)
 
         counter = 0
-        duration = 8
+        duration = 10
         while not counter >= duration:
             await asyncio.sleep(1)
             counter = counter + 1
