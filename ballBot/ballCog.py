@@ -17,3 +17,10 @@ class BallCog(commands.Cog):
         alternativas = ['A','B','C','D','E']
         msg = f'Escolha {random.choice(alternativas)}'
         await ctx.send(msg)
+        
+    @commands.command(name='vino')
+    async def _vino(self,ctx):
+        msg = f'O QUEEE???!?!?!! VOCÊ PEGOU ESSE PERSONAGEM?!!?!?! NAO ACREDITO'
+        for i in range(5):
+            await ctx.send(msg)
+        await ctx.send(f"🤯🤯🤯🤯🤯🤯🤯🤯🤯")
