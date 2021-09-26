@@ -25,7 +25,7 @@ class BallCog(commands.Cog):
             await ctx.send(msg)
         await ctx.send(f"🤯🤯🤯🤯🤯🤯🤯🤯🤯")
         
-    @commands.command(name='vino')
+    @commands.command(name='oniv')
     async def _oniv(self,ctx):
         msg = f'Ainda bem que você pegou esse personagem!!! 😊😊😊'
         for i in range(3):
