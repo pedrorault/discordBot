@@ -7,7 +7,7 @@ import os
 import sys
 
 from imageBot.imageCog import ImageCog
-from pokeBot.pokeCog import PokeCog
+# from pokeBot.pokeCog import PokeCog
 from spyBot.spyCog import SpyCog
 from voiceBot.voiceCog import VoiceCog
 from ballBot.ballCog import BallCog
@@ -46,7 +46,7 @@ async def on_command_error(ctx, error):
     raise error
 
 bot.add_cog(ImageCog(bot))
-bot.add_cog(PokeCog(bot))
+# bot.add_cog(PokeCog(bot))
 bot.add_cog(SpyCog(bot))
 bot.add_cog(VoiceCog(bot))
 bot.add_cog(BallCog(bot))
