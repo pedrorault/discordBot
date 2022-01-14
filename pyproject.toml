@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "discordbot"
+version = "2.0.0"
+description = ""
+authors = ["pedrorault <pedrorault@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "3.7.*"
+discord = "^1.7.3"
+pytz = "^2021.3"
+DateTime = "^4.3"
+asyncio = "^3.4.3"
+requests = "^2.27.1"
+
+[tool.poetry.dev-dependencies]
+python-dotenv = "^0.19.2"
+ipykernel = "^6.7.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
