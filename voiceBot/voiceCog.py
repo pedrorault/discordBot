@@ -61,6 +61,17 @@ class VoiceCog(commands.Cog):
         await voice.disconnect()
 
     @commands.command()
+    async def agora(self,ctx):
+        idCanal = ctx.message.author.voice.channel
+        if not discord.opus.is_loaded():
+            discord.opus.load_opus('libopus.so')
+        som = discord.FFmpegPCMAudio("./voiceBot/mp3/agora.mp3")
+        voice = await idCanal.connect()
+        voice.play(som)
+        await awaitRealTime(5)
+        await voice.disconnect()
+
+    @commands.command()
     async def remix(self,ctx):
         idCanal = int(os.environ.get('idSoloQ'))
         if not discord.opus.is_loaded():
