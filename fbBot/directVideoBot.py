@@ -16,8 +16,10 @@ async def scrap_for_video(url: str = ""):
     converted_url = convert_url(url)
     respose = requests.get(converted_url)
     body = respose.text
+    print(body)
     soup = bs(body, "html.parser")
     anchor_video = soup.find("a", attrs={"target":"_blank", "href":re.compile("\/video_redirect")})
+    print(anchor_video)
     href_video = anchor_video.attrs['href']
     link = href_video.split("/video_redirect/?src=")[1]
     unquoted_link = parse.unquote(link)
