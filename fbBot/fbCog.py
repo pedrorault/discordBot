@@ -10,4 +10,5 @@ class FbCog(commands.Cog):
     async def fb(self,ctx,arg=None):
         if arg is None:
             return
-        await ctx.send(scrap_for_video(url = arg))
+        new_url = await scrap_for_video(url = arg)
+        await ctx.send(new_url)

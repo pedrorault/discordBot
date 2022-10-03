@@ -12,11 +12,11 @@ def convert_url(url: str = ""):
         return f"Error: URL tem que estar no formato {FB_VIDEO_PREFIX}"
     return url.replace("www","mbasic")
 
-def scrap_for_video(url: str = ""):
+async def scrap_for_video(url: str = ""):
     converted_url = convert_url(url)
     respose = requests.get(converted_url)
     body = respose.text
-    soup = bs(body, "html")
+    soup = bs(body, "html.parser")
     anchor_video = soup.find("a", attrs={"target":"_blank", "href":re.compile("\/video_redirect")})
     href_video = anchor_video.attrs['href']
     link = href_video.split("/video_redirect/?src=")[1]
