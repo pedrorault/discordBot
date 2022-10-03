@@ -6,7 +6,7 @@ authors = ["pedrorault <pedrorault@gmail.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "3.7.*"
+python = "3.10.*"
 discord = "^1.7.3"
 pytz = "^2021.3"
 DateTime = "^4.3"
