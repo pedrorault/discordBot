@@ -13,6 +13,7 @@ from voiceBot.voiceCog import VoiceCog
 from ballBot.ballCog import BallCog
 from wikiuBot.wikiuCog import WikiuCog
 from dayBot.dayCog import DayCog
+from fbBot.fbCog import FbCog
 
 bot = commands.Bot(command_prefix = '.')
 
@@ -52,6 +53,7 @@ bot.add_cog(VoiceCog(bot))
 bot.add_cog(BallCog(bot))
 bot.add_cog(WikiuCog(bot))
 bot.add_cog(DayCog(bot))
+bot.add_cog(FbCog(bot))
 
 
 token = os.environ.get('TOKEN')
